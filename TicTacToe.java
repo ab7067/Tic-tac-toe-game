@@ -1,20 +1,44 @@
 package org.example;
 public class Main {
 
+    static char[][] board = new char[3][3];
+
     public static void main(String[] args) {
-        int slot = 7;
 
-        System.out.println("Row: " + getRowFromSlot(slot));
-        System.out.println("Column: " + getColFromSlot(slot));
+        initializeBoard();
+
+        int row = 1;
+        int col = 1;
+
+        if (isValidMove(row, col)) {
+            System.out.println("Move is valid.");
+        } else {
+            System.out.println("Invalid move.");
+        }
     }
 
-    // Convert slot (1–9) → row (0–2)
-    static int getRowFromSlot(int slot) {
-        return (slot - 1) / 3;
+    // Initialize board with '-'
+    static void initializeBoard() {
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) {
+                board[r][c] = '-';
+            }
+        }
     }
 
-    // Convert slot (1–9) → column (0–2)
-    static int getColFromSlot(int slot) {
-        return (slot - 1) % 3;
+    // Validate move
+    static boolean isValidMove(int row, int col) {
+
+        // Check bounds
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
+
+        // Check if cell is empty
+        if (board[row][col] != '-') {
+            return false;
+        }
+
+        return true;
     }
 }
