@@ -1,13 +1,16 @@
-public class TicTacToe {
+static void computerMove() {
+    Random rand = new Random();
 
-    static char[][] board = new char[3][3];
+    int row, col;
 
-    public static void main(String[] args) {
-        placeMove(0, 0, 'X');
-        System.out.println(board[0][0]);
-    }
+    while (true) {
+        row = rand.nextInt(3); // 0–2
+        col = rand.nextInt(3); // 0–2
 
-    static void placeMove(int row, int col, char symbol) {
-        board[row][col] = symbol;
+        if (board[row][col] == '-') {
+            board[row][col] = computerSymbol;
+            System.out.println("Computer placed at: " + row + ", " + col);
+            break;
+        }
     }
 }
